@@ -1,0 +1,17 @@
+=== Here the progress, notes and such will be documented ===
+
+
+~Start of work 15:15 15/03/2026
+
+
+
+
+When I call psutil.cpu_percent, I get a list containing 20 decimal numbers. That's because I am using a I5-14500T which has 20 processors (as seen in the task manager).
+I will have to find a reasonable way to display them all, since I can't afford to "lose" data but I can't put it all in as well.
+After a quick google search turns out the way window's task manager handles it is just an average. I'll do the same.
+
+
+Getting the results was very stright forward, might add graph in a bit to make it more user friendly. נראה..
+
+I noticed I get results from the Disk and RAM readings that are slightly different than the ones I see in the task manager, I looked it up and it turns out windows is calculating GBs as 1024**3 
+while most people (myself included) do it as 10^9. 
