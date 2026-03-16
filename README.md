@@ -4,7 +4,12 @@
 ## Why(s):
      
 ### RAM and Disk size appear different than window's task manager
- windows is calculating GBs as 1024**3, while most people (myself included) do it as 10^9.
+ windows is calculating GBs as 1024^3, while most people (myself included) do it as 10^9.
+
+### Information collected saperated into lists
+I saperated the data I've collected in the collector module into lists: CPU, RAM and Disk. Here are the specs for each:    
+* CPU : [0] = % of all cores, [1] = list of % of each core seperately.    
+* RAM : [0] = Total (in bytes), [1] = % of RAM used, [2] = used (in bytes) 
 
 
 ## Features to be added 
