@@ -15,3 +15,11 @@ Getting the results was very stright forward, might add graph in a bit to make i
 
 I noticed I get results from the Disk and RAM readings that are slightly different than the ones I see in the task manager, I looked it up and it turns out windows is calculating GBs as 1024**3 
 while most people (myself included) do it as 10^9. 
+
+I had to figure out how to create the Disk table, since it's a bit different measurements than CPU and RAM in my opinion, I sattled on creating a dict in getDisk, that has the partition letter, and the disk object
+created by psuitl. I had to figure out how to deal with all the data (combination of dict, lists, objects and more) I tried to make my code as readable as I can..
+
+
+Also, while working on the logger module I figured out logging all cores in a csv file would be rather "interesting". Should I make *amount of cores* coloums or one column with all cores inside, I sattled on the second one. 
+Later I've faced the same issue with the disk stats. A user could have 20 partitions. I thought the best way is to create a "Starting point" which will add all the partition at time of program start then if no info 
+is available I'll put in "N/A" aka not accessable.

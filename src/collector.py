@@ -10,13 +10,14 @@ def getRAM():
     return [(psutil.virtual_memory())[i] for i in (0,2,3)] #returns total, percentage and used in a list. Note it includes the pagefile (swap), for me it's 1.1GB thus upping the total..
 
 def getDisk():
-    partitions = psutil.disk_partitions() 
-    partitions = [partition[1] for partition in partitions] #The list of mounted partition letters [C:\,D:\...]."running over" the former partitions to save on creating new variables.
-    results = []
+    partitions_list = psutil.disk_partitions() 
+    partitions = [partition[1] for partition in partitions_list] #The list of mounted partition letters [C:\,D:\...]."running over" the former partitions to save on creating new variables.
+    results = {}
     for i in range(len(partitions)):
-        results.append(psutil.disk_usage(partitions[i]))
+        results[partitions_list[i][0]] = psutil.disk_usage(partitions[i])
     
     return results
+
 
 # RAM and DISK not passed as str like the CPU in order to be able to interact with the numbers later on.
 

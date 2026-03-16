@@ -1,5 +1,6 @@
 # SysMon project - Omri Berchman
 
+### Written and tested in Python 3.10
 
 ## Why(s):
      
