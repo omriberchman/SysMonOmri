@@ -1,10 +1,13 @@
 # SysMon project - Omri Berchman
 
-## Features
+
+## Why(s):
+     
+### RAM and Disk size appear different than window's task manager
+ windows is calculating GBs as 1024**3, while most people (myself included) do it as 10^9.
+
+
+## Features to be added 
 ### Graph to the right of the "Value" coloumn:
 Cool and makes readability easier.
 ### Colors
-
-## Why(s):
-### CPU showing average of all cores
- Most computer nowadays have multiple cores sometimes more than 10. So in order to display the overall usage of the CPU, I decided to make it the same way Microsoft did. Average of all cores.    
