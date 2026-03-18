@@ -3,6 +3,8 @@ import time
 
 information = {}
 stats = []
+num_of_columns = 0 
+
 def init(passed_info):
     global information
     information = passed_info
@@ -18,14 +20,22 @@ def init(passed_info):
         columns.append(str(key)+"Percent")
     #Add time parition:
     columns.append("Time")
-    with open('log.csv','r') as log_file: #Checking if the file is empty (to add the first row as "title") or to skip that.
-        if log_file.read(1): #file is empty
-            pass 
-        else: #file already has titles
-            with open('log.csv', 'w', newline='') as log_file: 
-                writer = csv.writer(log_file)
-                writer.writerow(columns)
+    global num_of_columns
+    num_of_columns = len(columns)
 
+
+    try:
+        with open('log.csv','r') as log_file: #Checking if the file is empty (to add the first row as "title") or to skip that.
+            if log_file.read(1): #file is empty
+                pass 
+            else: #file already has titles
+                with open('log.csv', 'w', newline='') as log_file: 
+                    writer = csv.writer(log_file)
+                    writer.writerow(columns)
+    except FileNotFoundError:
+        with open('log.csv', 'w', newline='') as log_file: 
+            writer = csv.writer(log_file)
+            writer.writerow(columns)
     for key in information['DISK'].values(): 
         stats.append(int(key[0]/10**9))
         stats.append(int(key[1]/10**9))
@@ -35,6 +45,9 @@ def init(passed_info):
 
 def printToLog():
     global stats
+    global columns
+    if (len(stats) != num_of_columns): #not len(columns) because at time of declaration (if I declate outside of the init func) it only has the CPU and RAM ones.
+        print("### OOPS NUMBER OF PARTIOTIONS CHANGED! ###")
     with open('log.csv','a', newline='') as log_file: #a for append
         writer = csv.writer(log_file, )
         writer.writerow(stats)
