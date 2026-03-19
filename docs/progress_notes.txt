@@ -23,3 +23,4 @@ created by psuitl. I had to figure out how to deal with all the data (combinatio
 Also, while working on the logger module I figured out logging all cores in a csv file would be rather "interesting". Should I make *amount of cores* coloums or one column with all cores inside, I sattled on the second one. 
 Later I've faced the same issue with the disk stats. A user could have 20 partitions. I thought the best way is to create a "Starting point" which will add all the partition at time of program start then if no info 
 is available I'll put in "N/A" aka not accessable.
+
