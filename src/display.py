@@ -2,7 +2,7 @@ from rich.live import Live
 from rich.table import Table
 from rich.columns import Columns #to display multiple tables at once
 
-refreshInterval = 2
+
 information = {}
 live = None
 
@@ -10,9 +10,9 @@ def init(passed_info):
     global information 
     information = passed_info
 
-def start():
+def start(interval):
     global live
-    live = Live(refresh_per_second=1)
+    live = Live(refresh_per_second=interval)
     live.start()
 
 def stop():

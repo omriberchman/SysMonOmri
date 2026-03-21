@@ -1,10 +1,31 @@
 import collector,logger,display
 import time
+import argparse
 
-refreshTime = 1
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--interval",
+    type=int,
+    default=1,
+    required=False,   #because the default is 1
+    help="Time to check"
+)
+parser.add_argument(
+    "--log",
+    type=str,
+    required=False,
+    default="..\log.csv", 
+    help="Custom location of the log file"
+)
+args = parser.parse_args()
+
+logger.log_location = args.log
+refreshTime = args.interval
 originalPartitionList = collector.getParitionsLetters()
 
-display.start()
+display.start(refreshTime)
 try:
     while True:
         information = {"CPU":collector.getCpuPercent(),
