@@ -2,6 +2,7 @@ import collector,logger,display
 import time
 
 refreshTime = 1
+originalPartitionList = collector.getParitionsLetters()
 
 display.start()
 try:
@@ -9,10 +10,10 @@ try:
         information = {"CPU":collector.getCpuPercent(),
                "RAM":collector.getRAM(),
                "DISK":collector.getDisk()
-               } #Dict, simpler than list, values in README.MD, done once to save on calling collector module multiple times
+               } 
         display.update(information)
         logger.init(information)
-        logger.printToLog()
+        logger.printToLog(originalPartitionList, collector.getParitionsLetters())
         time.sleep(refreshTime)
 
 except KeyboardInterrupt:

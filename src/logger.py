@@ -48,11 +48,25 @@ def numOfColumns():
         return number_of_words+1 #Because the end of the line is an invisible char which is not typable
 
 
-def printToLog():
+def printToLog(fList,nList): #Fist list / New list (of partitions)
     global stats
-    print(f"~~~ {len(stats)} = {numOfColumns()} ~~~")
-    if (len(stats) != numOfColumns()): #num_of_columns and not len(columns) because at time of declaration (if I declate outside of the init func) it only has the CPU and RAM ones.
-        print("### OOPS NUMBER OF PARTIOTIONS CHANGED! ###")
+       
+    if (fList < nList): #num_of_columns and not len(columns) because at time of declaration (if I declate outside of the init func) it only has the CPU and RAM ones.
+
+        missing_partition = "" #the missing/unmounted partition
+        for partition in fList:
+            if partition not in nList:
+                missing_partition = partition
+        num_to_skip = 0
+        
+        for i in range(len(fList)):
+            if fList[i] > missing_partition:
+                num_to_skip = len(fList)-i
+        
+        index = -(num_to_skip*3+1) #Negative = from the end, num_to_skip*3 because of the 3 entries to each partition, +1 because of the 'Time' columns
+        stats[index:index] = ["N/A", "N/A", "N/A"]
+
+            
     with open('log.csv','a', newline='') as log_file: #a for append
         writer = csv.writer(log_file, )
         writer.writerow(stats)

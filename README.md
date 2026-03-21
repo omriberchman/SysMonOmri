@@ -4,6 +4,8 @@
 
 ## Why(s):
      
+### In main.py variable 'Information' is a dict
+Dict is simpler than list in this case, values can be found in README.MD, done once to save on calling collector module multiple times    
 ### RAM and Disk size appear different than window's task manager
  windows is calculating GBs as 1024^3, while most people (myself included) do it as 10^9.
 
