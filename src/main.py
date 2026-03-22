@@ -21,26 +21,24 @@ parser.add_argument(
 )
 parser.add_argument(
     "--cpu-warn",
-    type=int,
-    required=False,
-    default=95, 
-    help="CPU warning above %"
+    action="store_true",
+    help="Enable CPU warning"
 )
 parser.add_argument(
     "--mem-warn",
-    type=int,
-    required=False,
-    default=95, 
-    help="RAM warning above %"
+    action="store_true",
+    help="Enable RAM warning"
 )
+
 args = parser.parse_args()
 
-display.cpu_warn == args
+# display.cpu_warn == args.cpu_warn
+# print(f"***{display.cpu_warn} == {args.cpu_warn}***")
 logger.log_location = args.log
 refreshTime = args.interval
 originalPartitionList = collector.getParitionsLetters()
 
-display.start(refreshTime)
+display.start(refreshTime,args.cpu_warn,args.mem_warn)
 try:
     while True:
         information = {"CPU":collector.getCpuPercent(),

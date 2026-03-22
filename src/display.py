@@ -12,8 +12,10 @@ def init(passed_info):
     global information 
     information = passed_info
 
-def start(interval):
-    global live
+def start(interval, cpu_warn_status, mem_warn_status):
+    global live, cpu_warn, mem_warn
+    cpu_warn = cpu_warn_status
+    mem_warn = mem_warn_status
     live = Live(refresh_per_second=interval)
     live.start()
 
@@ -23,10 +25,12 @@ def stop():
         live.stop()
 
 def update(information):
-    CPUtable = Table(title="CPU Metrics",style="red")
+    CPUtable = Table(title="CPU Metrics",style="green")
     CPUtable.show_lines = True #Show lines between each value, easier to look.
     CPUtable.add_column("CPU")
     CPUtable.add_column("Value")
+    if (cpu_warn == True and information['CPU'][0] > 90):
+        CPUtable.style = "red"
     CPUtable.add_row("Total",f"{information['CPU'][0]}%") # ==> Total | Z% 
     all_cores_display = ""
     for core in range(len(information['CPU'][1])):
@@ -36,15 +40,17 @@ def update(information):
             all_cores_display = (all_cores_display+f" [{information['CPU'][1][core]}%] ") # Add core as "[Z%]"
     CPUtable.add_row("By core",f"{all_cores_display}") # ==> By core | [Z%] [Z%] [Z%] [Z%] ....
     
-    RAMtable = Table(title="RAM Metrics")
+    RAMtable = Table(title="RAM Metrics",style="green")
     RAMtable.show_lines = True
+    if (mem_warn == True and information['RAM'][1] > 90):
+        RAMtable.style = "red"
     RAMtable.add_column("RAM")
     RAMtable.add_column("Value")
     RAMtable.add_row("Total", str(   round(  (information['RAM'][0])/(10**9) ,2)   )) #taking the getRAM() value from index 0, converts to GBs then rounds the decimal to 2. 
     RAMtable.add_row("Used", str(   round(information['RAM'][2]/10**9,2)))
     RAMtable.add_row("  %  " , str(    int(information['RAM'][1]))) #no need for decimal in %
 
-    DiskTable = Table(title="Disk Metrics")
+    DiskTable = Table(title="Disk Metrics",style="green")
     DiskTable.show_lines = True
     DiskTable.add_column("Disk")
     DiskTable.add_column("Used")
