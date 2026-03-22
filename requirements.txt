@@ -1,3 +1,5 @@
 csv
 rich
 psutil
+notify_py
+argparse

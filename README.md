@@ -2,6 +2,13 @@
 
 ### Written and tested in Python 3.10
 
+## Set up
+* ```git https://github.com/omriberchman/SysMonOmri.git```
+* ```cd SysMonomri```
+* ```pip install -r requirements.txt```    
+* ```cd src```
+* ```python main.py [ADD ARGS HERE]```
+
 ## Why(s):
      
 
