@@ -25,8 +25,3 @@ I saperated the data I've collected in the collector module into lists: CPU, RAM
 You must add a file with .csv file ending not just a folder/path.    
 ### <ins>The '--interval' can't accept with value smaller than 1
 The system will not accept value lower than 1, it doesn't work well with the sleep and psutil.Live combination..
-
-
-## Features to be added 
-
-### Colors
