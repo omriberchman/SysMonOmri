@@ -16,7 +16,7 @@ parser.add_argument(
     "--log",
     type=str,
     required=False,
-    default="..\log.csv", 
+    default="..\\log.csv", 
     help="Custom location of the log file"
 )
 parser.add_argument(
@@ -31,9 +31,6 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
-
-# display.cpu_warn == args.cpu_warn
-# print(f"***{display.cpu_warn} == {args.cpu_warn}***")
 logger.log_location = args.log
 refreshTime = args.interval
 originalPartitionList = collector.getParitionsLetters()
