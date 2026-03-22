@@ -19,8 +19,23 @@ parser.add_argument(
     default="..\log.csv", 
     help="Custom location of the log file"
 )
+parser.add_argument(
+    "--cpu-warn",
+    type=int,
+    required=False,
+    default=95, 
+    help="CPU warning above %"
+)
+parser.add_argument(
+    "--mem-warn",
+    type=int,
+    required=False,
+    default=95, 
+    help="RAM warning above %"
+)
 args = parser.parse_args()
 
+display.cpu_warn == args
 logger.log_location = args.log
 refreshTime = args.interval
 originalPartitionList = collector.getParitionsLetters()
