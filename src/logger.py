@@ -71,4 +71,4 @@ def NukeFile(): #clear the log file
         with open(log_location, "w") as f:
             pass
     else:
-        print("FILE PATH IS NOT A .CSV FILE EXITING!!!")
+        print("FILE PATH IS NOT A .CSV FILE NOT DELETING!!!")
