@@ -1,4 +1,4 @@
-import collector,logger,display
+import collector,logger,sysDisplay
 import time
 import argparse
 
@@ -35,7 +35,7 @@ logger.log_location = args.log
 refreshTime = args.interval
 originalPartitionList = collector.getParitionsLetters()
 
-display.start(refreshTime,args.cpu_warn,args.mem_warn)
+display = sysDisplay.Display(interval=args.interval,cpu_warn_status=args.cpu_warn,mem_warn_status=args.mem_warn)
 try:
     while True:
         information = {"CPU":collector.getCpuPercent(),
