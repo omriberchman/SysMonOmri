@@ -6,7 +6,7 @@ notification = Notify()
  
 
 cpu_warn = False
-mem_warn = False
+mem_warn = False ###########2change
 information = {}
 live = None
 

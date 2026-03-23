@@ -3,7 +3,7 @@ import time
 
 information = {}
 stats = []
-log_location = '..\log.csv' #..\ => the upper folder
+log_location = 'log.csv' #..\ => the upper folder
 
 
 def init(passed_info):
@@ -23,12 +23,11 @@ def init(passed_info):
     columns.append("Time")
     global num_of_columns
 
-
     try:
         with open(log_location,'r') as log_file: #Checking if the file is empty (to add the first row as "title") or to skip that.
             if log_file.read(1): #file is empty
                 pass 
-            else: #file already has titles
+            else: #file already has content
                 with open(log_location, 'w', newline='') as log_file: 
                     writer = csv.writer(log_file)
                     writer.writerow(columns)
@@ -41,12 +40,6 @@ def init(passed_info):
         stats.append(int(key[1]/10**9))
         stats.append(key[3])
     stats.append(str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
-
-
-def numOfColumns():
-    with open(log_location,"r") as log_file:
-        number_of_words = log_file.readline().count(",")    
-        return number_of_words+1 #Because the end of the line is an invisible char which is not typable
 
 
 def printToLog(fList,nList): #Fist list / New list (of partitions)
@@ -74,5 +67,8 @@ def printToLog(fList,nList): #Fist list / New list (of partitions)
 
 
 def NukeFile(): #clear the log file
-    with open(log_location, "w") as f:
-        pass
+    if log_location.endswith(".csv"):
+        with open(log_location, "w") as f:
+            pass
+    else:
+        print("FILE PATH IS NOT A .CSV FILE EXITING!!!")

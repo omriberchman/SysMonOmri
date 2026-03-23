@@ -16,7 +16,7 @@ parser.add_argument(
     "--log",
     type=str,
     required=False,
-    default="..\\log.csv", 
+    default="log.csv", 
     help="Custom location of the log file"
 )
 parser.add_argument(

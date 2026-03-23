@@ -25,5 +25,3 @@ def getParitionsLetters():
 
 
 # RAM and DISK not passed as str like the CPU in order to be able to interact with the numbers later on.
-
-#i'll use the bytes to GB convertion formula: number of bytes / 10^9 (number of bytes in a GB). Note that windows measures it in 1024**3 so it'll show a bit different than the task manager.
