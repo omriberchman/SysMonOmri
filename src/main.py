@@ -1,4 +1,4 @@
-import collector,logger,sysDisplay
+import SysCollector,sysLogger,sysDisplay
 import time
 import argparse
 
@@ -31,20 +31,21 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
+logger = sysLogger.Logger({"CPU":SysCollector.getCpuPercent(),"RAM":SysCollector.getRAM(),"DISK":SysCollector.getDisk()} )
 logger.log_location = args.log
 refreshTime = args.interval
-originalPartitionList = collector.getParitionsLetters()
+originalPartitionList = SysCollector.getParitionsLetters() #Saving startup partition list
 
 display = sysDisplay.Display(interval=args.interval,cpu_warn_status=args.cpu_warn,mem_warn_status=args.mem_warn)
 try:
     while True:
-        information = {"CPU":collector.getCpuPercent(),
-               "RAM":collector.getRAM(),
-               "DISK":collector.getDisk()
+        information = {"CPU":SysCollector.getCpuPercent(),
+               "RAM":SysCollector.getRAM(),
+               "DISK":SysCollector.getDisk()
                } 
         display.update(information)
-        logger.init(information)
-        logger.printToLog(originalPartitionList, collector.getParitionsLetters())
+        logger.update(information)
+        logger.printToLog(originalPartitionList, SysCollector.getParitionsLetters())
         time.sleep(refreshTime)
 
 except KeyboardInterrupt:
